@@ -54,10 +54,29 @@ const $express = $("input[name = 'express']");
 const $node = $("input[name = 'node']");
 const $buildtools = $("input[name = 'build-tools']");
 
-$('.activities').on('click', () => {
-  if ($jsFrameworks.prop('checked') == true) {$express.attr('disabled', true)}
+$jsFrameworks.on('click', () => {
+  if ($jsFrameworks.prop('checked') == true)
+    {$express.attr('disabled', true)}
+      else {$('.activities').children().attr('disabled', false)};
+    })
 
-})
+$jsLibs.on('click', () => {
+  if ($jsLibs.prop('checked') == true)
+    {$node.attr('disabled', true)}
+      else {$('.activities').children().attr('disabled', false)};
+        })
+
+$express.on('click', () => {
+  if ($express.prop('checked') == true)
+    {$jsFrameworks.attr('disabled', true)}
+      else {$('.activities').children().attr('disabled', false)};
+        })
+$node.on('click', () => {
+  if ($node.prop('checked') == true)
+    {$jsLibs.attr('disabled', true)}
+      else {$('.activities').children().attr('disabled', false)};
+        })
+
 
 /*<label><input type="checkbox" name="all"> Main Conference — $200</label>
 <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
