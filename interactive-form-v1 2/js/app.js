@@ -54,31 +54,50 @@ const $express = $("input[name = 'express']");
 const $node = $("input[name = 'node']");
 const $buildtools = $("input[name = 'build-tools']");
 
-$jsFrameworks.on('click', () => {
-  if ($jsFrameworks.prop('checked') == true)
+/*$jsFrameworks.change(function() {
+  if(this.checked)
     {$express.attr('disabled', true)}
-      else {$('.activities').children().attr('disabled', false)};
-    })
+  else if (this.unchecked)
+    {$('.activities').children().attr('disabled', false)}
+     }
+ );
 
-$jsLibs.on('click', () => {
-  if ($jsLibs.prop('checked') == true)
+ $express.change(function() {
+   if(this.checked)
+     {$jsFrameworks.attr('disabled', true)}
+   else if (this.unchecked)
+       {$('.activities').children().attr('disabled', false)}
+      }
+  );
+
+*/
+
+$jsFrameworks.change (function() {
+   if (this.checked)
+     {$express.attr('disabled', true)}
+       else {$express.attr('disabled', false)};
+     })
+
+$jsLibs.change (function() {
+  if (this.checked)
     {$node.attr('disabled', true)}
-      else {$('.activities').children().attr('disabled', false)};
+      else {$node.attr('disabled', false)};
         })
 
-$express.on('click', () => {
-  if ($express.prop('checked') == true)
+$express.change (function (){
+  if (this.checked)
     {$jsFrameworks.attr('disabled', true)}
-      else {$('.activities').children().attr('disabled', false)};
+      else {$jsFrameworks.attr('disabled', false)};
         })
-$node.on('click', () => {
-  if ($node.prop('checked') == true)
+
+$node.change (function (){
+  if (this.checked)
     {$jsLibs.attr('disabled', true)}
-      else {$('.activities').children().attr('disabled', false)};
+      else {$jsLibs.attr('disabled', false)};
         })
 
-
-/*<label><input type="checkbox" name="all"> Main Conference — $200</label>
+/*
+<label><input type="checkbox" name="all"> Main Conference — $200</label>
 <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
 <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
 <label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
