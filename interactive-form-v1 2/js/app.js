@@ -15,9 +15,11 @@ document.getElementById("title").addEventListener('change', () => {
   let x = document.getElementById("title").selectedIndex;
   userTitle = document.getElementsByTagName("option")[x].value;
     if (userTitle === 'other')
-      { otherTitleText.style.display = 'block'
+      { otherTitleText.style.display = 'block';
       otherTitleText.addEventListener('focus', ()=> {otherTitleText.value=''})
-    }
+      otherTitleText.addEventListener('focusout', ()=> {otherTitleText.value='Your Job Role'
+    })
+}
 })
 
 
@@ -47,13 +49,20 @@ document.getElementById('design').parentNode.addEventListener('change', (e) => {
 
 const $confEntry = $("input[name='all']");
 const $jsFrameworks = $("input[name = 'js-frameworks']");
-$jsFrameworks.attr('disabled', true)
-/*
-<label><input type="checkbox" name="all"> Main Conference — $200</label>
+const $jsLibs = $("input[name = 'js-libs']");
+const $express = $("input[name = 'express']");
+const $node = $("input[name = 'node']");
+const $buildtools = $("input[name = 'build-tools']");
+
+$('.activities').on('click', () => {
+  if ($jsFrameworks.prop('checked') == true) {$express.attr('disabled', true)}
+
+})
+
+/*<label><input type="checkbox" name="all"> Main Conference — $200</label>
 <label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
 <label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
 <label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
 <label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>
 <label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
-<label><input typ
-*/
+<label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>*/
