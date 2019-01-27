@@ -53,48 +53,46 @@ const $jsLibs = $("input[name = 'js-libs']");
 const $express = $("input[name = 'express']");
 const $node = $("input[name = 'node']");
 const $buildtools = $("input[name = 'build-tools']");
+let total = 0
 
-/*$jsFrameworks.change(function() {
-  if(this.checked)
-    {$express.attr('disabled', true)}
-  else if (this.unchecked)
-    {$('.activities').children().attr('disabled', false)}
-     }
- );
-
- $express.change(function() {
-   if(this.checked)
-     {$jsFrameworks.attr('disabled', true)}
-   else if (this.unchecked)
-       {$('.activities').children().attr('disabled', false)}
-      }
-  );
-
-*/
 
 $jsFrameworks.change (function() {
    if (this.checked)
-     {$express.attr('disabled', true)}
-       else {$express.attr('disabled', false)};
+     {$express.attr('disabled', true);
+      total += 100;}
+   if ($(this).prop("checked") == false)
+      {$express.attr('disabled', false);
+      total -= 100};
      })
 
 $jsLibs.change (function() {
   if (this.checked)
-    {$node.attr('disabled', true)}
-      else {$node.attr('disabled', false)};
-        })
+    {$node.attr('disabled', true);
+    total += 100;}
+ if ($(this).prop("checked") == false)
+    {$node.attr('disabled', false);
+    total -= 100};
+   })
 
 $express.change (function (){
   if (this.checked)
-    {$jsFrameworks.attr('disabled', true)}
-      else {$jsFrameworks.attr('disabled', false)};
-        })
+    {$jsFrameworks.attr('disabled', true);
+    total += 100};
+ if ($(this).prop("checked") == false)
+    {$jsFrameworks.attr('disabled', false);
+    total -= 100};
+   })
 
 $node.change (function (){
   if (this.checked)
-    {$jsLibs.attr('disabled', true)}
-      else {$jsLibs.attr('disabled', false)};
-        })
+    {$jsLibs.attr('disabled', true)
+    total += 100};
+ if ($(this).prop("checked") == false)
+    {$jsLibs.attr('disabled', false);
+    total -= 100};
+   })
+
+
 
 /*
 <label><input type="checkbox" name="all"> Main Conference — $200</label>
