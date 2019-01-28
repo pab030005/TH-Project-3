@@ -47,58 +47,94 @@ document.getElementById('design').parentNode.addEventListener('change', (e) => {
 }
 })
 
+const $all = $("input[name = 'all']");
 const $confEntry = $("input[name='all']");
 const $jsFrameworks = $("input[name = 'js-frameworks']");
 const $jsLibs = $("input[name = 'js-libs']");
 const $express = $("input[name = 'express']");
 const $node = $("input[name = 'node']");
 const $buildtools = $("input[name = 'build-tools']");
-let total = 0
+const $npm = $("input[name = 'npm']");
+let $total = 0
+let $newP = $("<p id = total>Total: $0</p>")
+$('.activities').append($newP);
+
+
+
+
+$all.change (function() {
+   if (this.checked)
+      {$total += 200;
+  }
+
+   if ($(this).prop("checked") == false)
+      {$total -= 200
+      };
+  $newP.text('Total: $' + $total); })
 
 
 $jsFrameworks.change (function() {
    if (this.checked)
      {$express.attr('disabled', true);
-      total += 100;}
+      $total += 100;}
    if ($(this).prop("checked") == false)
       {$express.attr('disabled', false);
-      total -= 100};
-     })
+      $total -= 100};
+  $newP.text('Total: $' + $total);
+    });
 
 $jsLibs.change (function() {
   if (this.checked)
     {$node.attr('disabled', true);
-    total += 100;}
+    $total += 100;}
  if ($(this).prop("checked") == false)
     {$node.attr('disabled', false);
-    total -= 100};
-   })
+    $total -= 100};
+  $newP.text('Total: $' + $total);
+  });
 
 $express.change (function (){
   if (this.checked)
     {$jsFrameworks.attr('disabled', true);
-    total += 100};
+    $total += 100};
  if ($(this).prop("checked") == false)
     {$jsFrameworks.attr('disabled', false);
-    total -= 100};
-   })
+    $total -= 100};
+  $newP.text('Total: $' + $total);
+  });
 
 $node.change (function (){
   if (this.checked)
     {$jsLibs.attr('disabled', true)
-    total += 100};
+    $total += 100};
  if ($(this).prop("checked") == false)
     {$jsLibs.attr('disabled', false);
-    total -= 100};
-   })
+    $total -= 100};
+  $newP.text('Total: $' + $total);
+  });
 
+$buildtools.change (function() {
+  if (this.checked)
+     {$total += 100;}
+  if ($(this).prop("checked") == false)
+     {$total -= 100};
+  $newP.text('Total: $' + $total);
+  });
 
+$npm.change (function() {
+  if (this.checked)
+     {$total += 100;}
+  if ($(this).prop("checked") == false)
+     {$total -= 100};
+  $newP.text('Total: $' + $total);
+  });
 
-/*
-<label><input type="checkbox" name="all"> Main Conference — $200</label>
-<label><input type="checkbox" name="js-frameworks"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
-<label><input type="checkbox" name="js-libs"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
-<label><input type="checkbox" name="express"> Express Workshop — Tuesday 9am-12pm, $100</label>
-<label><input type="checkbox" name="node"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>
-<label><input type="checkbox" name="build-tools"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
-<label><input type="checkbox" name="npm"> npm Workshop — Wednesday 1pm-4pm, $100</label>*/
+const payDetails =  document.querySelector('#payment')
+const cc = document.getElementById('credit-card')
+cc.style.display = 'none';
+
+  payDetails.addEventListener('change', (e) => {
+    if (e.target.selectedIndex === 1 ) {cc.style.display = 'block'
+    document.querySelector('#cc-num').focus()}
+    else {cc.style.display = 'none'}
+  })
