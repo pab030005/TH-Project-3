@@ -130,11 +130,39 @@ $npm.change (function() {
   });
 
 const payDetails =  document.querySelector('#payment')
+const pp = document.getElementsByTagName('p')[1]
+const btc = document.getElementsByTagName('p')[2]
 const cc = document.getElementById('credit-card')
-cc.style.display = 'none';
+const all = document.getElementById('credit-card').parentNode.children
+const submitButton = document.getElementsByTagName('button')[0];
+
+btc.style.display = 'none';
+pp.style.display = 'none';
+payDetails[1].selected = 'selected';
+
 
   payDetails.addEventListener('change', (e) => {
-    if (e.target.selectedIndex === 1 ) {cc.style.display = 'block'
+    if (e.target.selectedIndex === 1 )
+      {cc.style.display = 'block';
+        btc.style.display = 'none';
+        pp.style.display = 'none';
     document.querySelector('#cc-num').focus()}
-    else {cc.style.display = 'none'}
+
+    if (e.target.selectedIndex === 2 )
+      {pp.style.display = 'block';
+        btc.style.display = 'none';
+        cc.style.display = 'none';}
+
+    if (e.target.selectedIndex === 3 )
+      {btc.style.display = 'block';
+        pp.style.display = 'none';
+        cc.style.display = 'none';
+        submitButton.disabled = false}
+
+    if (e.target.selectedIndex === 0 )
+      {submitButton.disabled = true;
+        btc.style.display = 'none';
+        pp.style.display = 'none';
+        cc.style.display = 'none';}
+
   })
