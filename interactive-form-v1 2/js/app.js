@@ -25,28 +25,51 @@ document.getElementById("title").addEventListener('change', () => {
   })
 
 //depending on theme, hide/show theme-specific colors by manipulating/selecting by index of options.
+//color option drop down will be locked to a default value of 'please chose theme' until a theme is selected
+//respective colors will appear depending on chose theme.
+
 let shirtDesign = document.getElementById('design').children;
 let shirtColor = document.getElementById('color').children;
-document.getElementById('design').parentNode.addEventListener('change', (e) => {
-  if (e.target.selectedIndex === 1 ) {
-    shirtColor[0].setAttribute('selected', 'selected')
-    shirtColor[0].style.display = 'block'
-    shirtColor[1].style.display = 'block'
-    shirtColor[2].style.display = 'block'
-    shirtColor[3].style.display = 'none'
-    shirtColor[4].style.display = 'none'
-    shirtColor[5].style.display = 'none'
+let shirtColorSelect = document.getElementById('color');
+let option = document.createElement("option");
+option.text = "Please select a theme";
+option.value = "blank";
+shirtColorSelect.add(option, shirtColorSelect[6]);
+shirtColor[6].setAttribute('selected', true);
+for (i=0; i<6; i++){
+  shirtColor[i].hidden = true}
+
+
+document.getElementById('design').addEventListener('change', (e) => {
+  if (e.target.selectedIndex === 1) {
+    shirtColorSelect.value = 'cornflowerblue';
+    shirtColor[0].hidden = false;
+    shirtColor[1].hidden = false;
+    shirtColor[2].hidden = false;
+    shirtColor[3].hidden = true;
+    shirtColor[4].hidden = true;
+    shirtColor[5].hidden = true;
+    shirtColor[6].hidden = true
   }
-  if (e.target.selectedIndex === 2 ) {
-    shirtColor[3].setAttribute('selected', 'selected')
-    shirtColor[3].style.display = 'block'
-    shirtColor[4].style.display = 'block'
-    shirtColor[5].style.display = 'block'
-    shirtColor[0].style.display = 'none'
-    shirtColor[1].style.display = 'none'
-    shirtColor[2].style.display = 'none'
+  else if (e.target.selectedIndex === 2) {
+    shirtColorSelect.value = 'tomato';
+    shirtColor[3].hidden = false;
+    shirtColor[4].hidden = false;
+    shirtColor[5].hidden = false;
+    shirtColor[0].hidden = true;
+    shirtColor[1].hidden = true;
+    shirtColor[2].hidden = true;
+    shirtColor[6].hidden = true
   }
+  else {
+    shirtColorSelect.value = 'blank';
+    for (i=0; i<6; i++){
+      shirtColor[i].hidden = true}
+        shirtColor[6].hidden = false
+  }
+
 })
+
 
 //global variables used to select/maniuplate activites are declared
 //JQuery used here to select sctivity checkboxes
@@ -206,8 +229,9 @@ const cczipRegEx = /[0-9]{5}/;
 const cccvvRegEx = /[0-9]{2}/;
 
 /*if CC is method of payment, check if each CC field is completed AND in proper format.
-if empty, error messsage says so; if not empty but not proper format, error message will
-alert user.  The form will not submit unless CC#, Zip, or CVV are present & proper format*/
+if no CC # provided, error messsage says so; if CC # is provided, but not in proper format,
+a separate error message will alert user.
+The form will not submit unless CC#, Zip, or CVV are present & proper format*/
 
 submitButton.addEventListener('click', (e) => {
   if (payDetails.selectedIndex === 1) {
